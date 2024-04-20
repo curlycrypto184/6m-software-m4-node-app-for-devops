@@ -56,9 +56,21 @@ workflows:
       - test:
           requires:
             - build
+          filters:
+            branches:
+              only:
+                - main
       - publish:
           requires:
             - test
+        filters:
+            branches:
+              only:
+                - release
       - deploy:
           requires:
             - publish
+        filters:
+            branches:
+              only:
+                - release
